@@ -4,163 +4,492 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prashant | Developer Portfolio</title>
+
   <style>
     html {
-  scroll-behavior: smooth;
- }
-    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
-    body { background:#0f172a; color:#e2e8f0; }
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e2e8f0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .cursor-glow {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.16) 0%, rgba(56, 189, 248, 0.07) 30%, rgba(15, 23, 42, 0) 70%);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      transition: transform 0.06s linear;
+    }
+
+    header,
+    nav,
+    .container,
+    footer {
+      position: relative;
+      z-index: 1;
+    }
 
     header {
-      text-align:center;
-      padding:60px 20px;
-      background:linear-gradient(135deg,#1e293b,#0f172a);
+      text-align: center;
+      padding: 80px 20px 70px;
+      background: linear-gradient(135deg, #1e293b, #020617);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.08);
     }
 
     header img {
-      width:120px;
-      height:120px;
-      border-radius:50%;
-      margin-bottom:15px;
-      border:3px solid #38bdf8;
+      width: 135px;
+      height: 135px;
+      border-radius: 50%;
+      border: 3px solid #38bdf8;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.35);
+      margin-bottom: 18px;
+      object-fit: cover;
     }
 
-    header h1 { font-size:2.5rem; }
-    header p { color:#94a3b8; margin-top:10px; }
+    header h1 {
+      font-size: 3rem;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .typing {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      margin-top: 8px;
+      min-height: 32px;
+    }
+
+    .typing span {
+      color: #38bdf8;
+      font-weight: 600;
+      border-right: 2px solid #38bdf8;
+      padding-right: 5px;
+      animation: blink 0.8s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #020617;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      box-shadow: 0 10px 24px rgba(56, 189, 248, 0.25);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 14px 30px rgba(56, 189, 248, 0.4);
+      opacity: 0.96;
+    }
 
     nav {
-      text-align:center;
-      background:#020617;
-      padding:15px;
-      position:sticky;
-      top:0;
+      text-align: center;
+      background: rgba(2, 6, 23, 0.82);
+      padding: 18px 12px;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.08);
     }
 
     nav a {
-      color:#e2e8f0;
-      margin:0 15px;
-      text-decoration:none;
-      font-weight:bold;
+      color: #e2e8f0;
+      margin: 0 16px;
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s ease;
+      display: inline-block;
     }
 
-    nav a:hover { color:#38bdf8; }
+    nav a:hover {
+      color: #38bdf8;
+    }
 
-    .container { width:90%; max-width:1100px; margin:40px auto; }
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #38bdf8;
+      left: 0;
+      bottom: -6px;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 50px auto;
+    }
 
     section {
-      margin-bottom:30px;
-      padding:25px;
-      background:#1e293b;
-      border-radius:12px;
+      margin-bottom: 28px;
+      padding: 30px;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+      border-radius: 18px;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeInUp 0.8s ease;
     }
 
-    h2 { color:#38bdf8; margin-bottom:10px; }
+    h2 {
+      color: #38bdf8;
+      margin-bottom: 16px;
+      font-size: 2rem;
+    }
+
+    #about p,
+    #contact p,
+    .card p {
+      color: #cbd5e1;
+      line-height: 1.7;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
     .skills span {
-      display:inline-block;
-      background:#334155;
-      padding:8px 14px;
-      margin:5px;
-      border-radius:20px;
+      display: inline-block;
+      background: #334155;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
 
-    .projects { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .skills span:hover {
+      transform: translateY(-3px);
+      background: #475569;
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.1);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
 
     .card {
-      background:#020617;
-      padding:20px;
-      border-radius:10px;
-      transition:0.3s;
+      background: linear-gradient(180deg, #020617, #0f172a);
+      padding: 22px;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      border: 1px solid transparent;
     }
 
-    .card:hover { transform:translateY(-5px); }
-
-    .btn {
-      display:inline-block;
-      margin-top:10px;
-      padding:10px 15px;
-      background:#38bdf8;
-      color:#020617;
-      border-radius:8px;
-      text-decoration:none;
-      font-weight:bold;
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 36px rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.28);
     }
 
-    footer { text-align:center; padding:20px; background:#020617; }
+    .card h3 {
+      margin-bottom: 10px;
+      color: #f8fafc;
+    }
+
+    .card .btn {
+      margin-top: 16px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .contact-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .contact-links a:hover {
+      color: #38bdf8;
+      transform: translateX(4px);
+    }
+
+    .icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 22px;
+      background: #020617;
+      color: #94a3b8;
+      border-top: 1px solid rgba(56, 189, 248, 0.08);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .projects {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cursor-glow {
+        display: none;
+      }
+
+      header {
+        padding: 65px 18px 55px;
+      }
+
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      .typing {
+        font-size: 1rem;
+      }
+
+      nav {
+        padding: 14px 10px;
+      }
+
+      nav a {
+        margin: 6px 10px;
+        font-size: 0.95rem;
+      }
+
+      .container {
+        width: 92%;
+        margin: 30px auto;
+      }
+
+      section {
+        padding: 22px 18px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        padding: 11px 18px;
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header img {
+        width: 110px;
+        height: 110px;
+      }
+
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      nav a {
+        margin: 6px 8px;
+        font-size: 0.9rem;
+      }
+
+      .skills span {
+        font-size: 0.9rem;
+        padding: 9px 13px;
+      }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="profile.jpg" alt="profile" />
-  <h1>Prashant Kumar Jha</h1>
-  <p>Aspiring Full Stack Developer</p>
-  <a href="resume.pdf" class="btn" target="_blank">Download Resume</a>
-</header>
+  <div class="cursor-glow"></div>
 
-<nav>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
-</nav>
+  <header>
+    <img src="profile.jpg" alt="profile" />
+    <h1>Prashant Kumar Jha</h1>
+    <p class="typing">I am a <span id="typing-text"></span></p>
+    <a href="resume.pdf" class="btn" target="_blank">Download Resume</a>
+  </header>
 
-<div class="container">
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<section id="about">
-  <h2>About Me</h2>
-  <p>I am a passionate developer learning full stack development. I build projects using HTML, CSS, JavaScript and MERN stack.</p>
-</section>
+  <div class="container">
 
-<section id="skills">
-  <h2>Skills</h2>
-  <div class="skills">
-    <span>HTML</span>
-    <span>CSS</span>
-    <span>JavaScript</span>
-    <span>React</span>
-    <span>Node.js</span>
-    <span>MongoDB</span>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a passionate developer learning full stack development. I build responsive and modern web applications using HTML, CSS, JavaScript, React, Node.js, and MongoDB. I enjoy creating clean user interfaces and solving real-world problems through code.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>React</span>
+        <span>Node.js</span>
+        <span>MongoDB</span>
+        <span>GitHub</span>
+        <span>Responsive Design</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+
+        <div class="card">
+          <h3>Portfolio Website</h3>
+          <p>Personal portfolio website built with HTML, CSS, and JavaScript with responsive premium UI.</p>
+          <a href="#" class="btn">View</a>
+        </div>
+
+        <div class="card">
+          <h3>To-Do App</h3>
+          <p>Task management application using JavaScript with clean layout and interactive features.</p>
+          <a href="#" class="btn">View</a>
+        </div>
+
+        <div class="card">
+          <h3>Weather App</h3>
+          <p>Weather application using API integration to show live weather details in a simple interface.</p>
+          <a href="#" class="btn">View</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: prashant1kjha@gmail.com</p>
+
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/prashant-kumar-jha-7410b2257/" target="_blank">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19ZM8.34 17V9.5H5.85V17H8.34ZM7.09 8.47A1.44 1.44 0 1 0 7.09 5.59A1.44 1.44 0 1 0 7.09 8.47ZM18.15 17V12.86C18.15 10.64 16.97 9.3 15.09 9.3C13.57 9.3 12.89 10.14 12.51 10.73V9.5H10.02C10.05 10.32 10.02 17 10.02 17H12.51V12.81C12.51 12.59 12.53 12.37 12.59 12.21C12.76 11.77 13.15 11.31 13.82 11.31C14.69 11.31 15.04 11.97 15.04 12.93V17H18.15Z"/>
+          </svg>
+          My LinkedIn
+        </a>
+
+        <a href="https://github.com/prashant565" target="_blank">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 .5C5.65.5.5 5.66.5 12.02C.5 17.1 3.79 21.4 8.35 22.92C8.95 23.03 9.17 22.66 9.17 22.34C9.17 22.05 9.16 21.09 9.16 20.06C5.8 20.79 5.09 18.44 5.09 18.44C4.55 17.07 3.77 16.71 3.77 16.71C2.69 15.97 3.85 15.99 3.85 15.99C5.05 16.08 5.68 17.24 5.68 17.24C6.74 19.08 8.46 18.55 9.15 18.24C9.26 17.47 9.57 16.95 9.91 16.65C7.23 16.34 4.41 15.3 4.41 10.67C4.41 9.35 4.88 8.28 5.66 7.44C5.54 7.14 5.12 5.9 5.78 4.22C5.78 4.22 6.79 3.89 9.15 5.49C10.11 5.22 11.13 5.09 12.15 5.08C13.17 5.09 14.19 5.22 15.15 5.49C17.5 3.89 18.51 4.22 18.51 4.22C19.17 5.9 18.75 7.14 18.63 7.44C19.41 8.28 19.88 9.35 19.88 10.67C19.88 15.31 17.05 16.33 14.36 16.64C14.79 17.01 15.18 17.73 15.18 18.84C15.18 20.43 15.16 21.78 15.16 22.34C15.16 22.66 15.38 23.04 15.99 22.92C20.56 21.39 23.85 17.1 23.85 12.02C23.85 5.66 18.7.5 12 .5Z"/>
+          </svg>
+          My GitHub
+        </a>
+      </div>
+    </section>
+
   </div>
-</section>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="projects">
+  <footer>
+    <p>© 2026 Prashant Kumar Jha</p>
+  </footer>
 
-    <div class="card">
-      <h3>Portfolio Website</h3>
-      <p>Personal portfolio built using HTML & CSS.</p>
-      <a href="#" class="btn">View</a>
-    </div>
+  <script>
+    const roles = [
+      "Full Stack Developer",
+      "Frontend Developer",
+      "React Learner",
+      "MERN Stack Enthusiast"
+    ];
 
-    <div class="card">
-      <h3>To-Do App</h3>
-      <p>Task management app using JavaScript.</p>
-      <a href="#" class="btn">View</a>
-    </div>
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingText = document.getElementById("typing-text");
 
-    <div class="card">
-      <h3>Weather App</h3>
-      <p>Weather app using API integration.</p>
-      <a href="#" class="btn">View</a>
-    </div>
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typingText.textContent = currentRole.substring(0, charIndex--);
+      } else {
+        typingText.textContent = currentRole.substring(0, charIndex++);
+      }
 
-  </div>
-</section>
+      let speed = isDeleting ? 60 : 100;
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: prashant@example.com</p>
-  <p>LinkedIn: <a href="https://www.linkedin.com/in/prashant-kumar-jha-7410b2257/" target="_blank">My LinkedIn</a></p>
-  <p>GitHub: <a href="https://github.com/prashant565" target="_blank">My GitHub</a></p>
-</section>
+      if (!isDeleting && charIndex === currentRole.length + 1) {
+        speed = 1200;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        speed = 250;
+      }
 
-</div>
+      setTimeout(typeEffect, speed);
+    }
 
-<footer>
-  <p>© 2026 Prashant Kumar Jha</p>
-</footer>
+    typeEffect();
+
+    const glow = document.querySelector(".cursor-glow");
+    document.addEventListener("mousemove", (e) => {
+      glow.style.left = e.clientX + "px";
+      glow.style.top = e.clientY + "px";
+    });
+  </script>
 
 </body>
 </html>
