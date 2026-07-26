@@ -1,4 +1,7 @@
 # 🌐 Personal Portfolio Website
+
+[![Live Demo](https://img.shields.io/badge/🚀-Live%20Demo-success?style=for-the-badge)](https://prashant565.github.io/html-portfolio-project/)
+
 <p align="center">
   <img src="./portfolio-preview.png" alt="Portfolio Preview" width="100%">
 </p>
